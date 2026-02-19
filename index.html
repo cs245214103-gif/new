@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Payroll System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4e73df, #1cc88a);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #4e73df;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #2e59d9;
+        }
+
+        .result {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Employee Payroll</h2>
+
+    <label>Employee Name</label>
+    <input type="text" id="empName">
+
+    <label>Basic Salary</label>
+    <input type="number" id="basic">
+
+    <label>HRA</label>
+    <input type="number" id="hra">
+
+    <label>DA</label>
+    <input type="number" id="da">
+
+    <label>Deductions</label>
+    <input type="number" id="deductions">
+
+    <button onclick="calculateSalary()">Calculate Net Salary</button>
+
+    <div class="result" id="output"></div>
+</div>
+
+<script>
+    function calculateSalary() {
+        let name = document.getElementById("empName").value;
+        let basic = parseFloat(document.getElementById("basic").value) || 0;
+        let hra = parseFloat(document.getElementById("hra").value) || 0;
+        let da = parseFloat(document.getElementById("da").value) || 0;
+        let deductions = parseFloat(document.getElementById("deductions").value) || 0;
+
+        let gross = basic + hra + da;
+        let netSalary = gross - deductions;
+
+        document.getElementById("output").innerHTML =
+            "Employee: " + name + "<br>" +
+            "Gross Salary: ₹" + gross.toFixed(2) + "<br>" +
+            "Net Salary: ₹" + netSalary.toFixed(2);
+    }
+</script>
+
+</body>
+</html>
